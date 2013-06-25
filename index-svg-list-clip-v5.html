@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:100,400' rel='stylesheet' type='text/css'>	
+	<link rel="stylesheet" href="http://www.audrey-leroy.fr/wp-hex-inent/themes/Audreyleroy/styles/normalize.css" />
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.thibaudb.com/js/jquery.easing.1.3.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+
+	$('.hexagon:gt(4)').css({ 'top':'-40px' });
+	$('.hexagon:gt(8)').css({ 'top':'-80px' });
+	$('.hexagon:gt(12)').css({ 'top':'-120px' });
+
+	var easeIn = 'easeOutExpo',
+		easeElast = 'easeOutElastic',
+		easeBoun = 'easeOutBounce',
+		easeOut = 'easeOutCubic',
+		speedIn = 800,
+		speedOut = 300;
+
+	var hexIn = $('.hex-in'),
+		hexStroke = $('.stroke'),
+		hexMask = $('.mask'),
+		hexLink = $('.link'),
+		hexImg = $('.hex-img'),
+		hexA = $('.hex-in a');
+
+	hexStroke.css({ 'background-size':'98%', 'opacity': 0 });
+	//
+	hexIn.hover(function() {
+		//
+		var currentHex = $(this);
+		//
+		currentHex.find(hexMask)
+			.dequeue().stop()
+			.animate({ 'background-size':'140%' }, speedIn, easeIn);
+		//
+		currentHex.click(function() {
+			//
+			currentHex.find(hexLink)
+				.filter(':not(:animated)')
+				.stop(false,false)
+				.css({'z-index':25})
+				.animate({'opacity':1});
+			
+			currentHex.find(hexMask)
+				.dequeue().stop()
+				.animate({ 'background-size':'130%' }, 200);
+
+			currentHex.addClass('active-link');
+
+		});
+
+	}, function() {
+		//
+		var currentHex = $(this);
+		//
+		currentHex.find(hexLink)
+			.stop(true,false)
+			.css({'z-index':21})
+			.dequeue().animate({'opacity':0});
+
+		currentHex.find(hexMask)
+			.dequeue().stop()
+			.animate({ 'background-size':'120%' }, speedOut, easeOut);
+
+		if ( hexIn.hasClass('active-link') ){
+			currentHex.find(hexStroke)
+				.stop(true,false)
+				.animate({ 'background-size':'108%','opacity':1 }, 100, easeBoun, function() {
+					$(this).animate({ 'background-size':'98%','opacity':0 }, 200);
+				});
+		}
+		currentHex.removeClass('active-link');
+	});
+
+
+
+});
+
+</script>
+<style type="text/css">
+
+body{
+	background: #1d1e22;
+	color: #fff;
+	font-family: helvetica, arial;
+	font-weight: lighter;
+}
+
+#wrapper{
+	width:880px;
+	margin: auto;
+}
+
+.hexagon{
+	width: 160px;
+	height: 180px;
+	display: inline-block;
+	position:relative;
+	text-align: center;
+}
+	.hexagon:nth-child(6),
+	.hexagon:nth-child(16){
+		margin-left: 80px;
+	}
+
+	.hex-1{ 
+		overflow: hidden;
+		visibility: hidden;
+		-webkit-transform: rotate(120deg); 
+		-webkit-transform-origin: center center;
+	}
+
+	.hex-1, .hex-2, .hex-in,
+	.stroke, .mask, .link, .hex-in img{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+		.hex-2, .stroke, .mask, .link, .hex-in img{ 
+			-webkit-transform: rotate(-60deg); 
+		}
+
+			.hex-in{
+				cursor: pointer;
+				-webkit-transform: rotate(0deg);
+			}
+
+			.stroke, .mask, .link, .hex-in img{
+				visibility: visible;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+
+				.stroke, .mask, .link{
+					background-position: 50%!important;
+					background-repeat: no-repeat!important;
+				}
+
+				.stroke{
+					background: url('images/stroke-roundhex.svg');
+					background-size: 98%; /* MAX 110% */
+					opacity:0;
+					z-index: 23;
+				}
+
+				.mask{ 
+					background: url('images/mask-roundhex.svg');
+					background-size: 120%; /* MAX 140% */
+					z-index: 22;
+				}
+
+				.link{
+					opacity:0;
+					z-index: 21; 
+					background: #3C3C3B url('images/mask-roundhex.svg');
+					background-size: 130%;
+					background-position: 50%;
+				}
+
+					a.link h4{ margin-top: 70px; margin-bottom: 10px; }
+					a.link p{ font-size: 16px; width: 80%; margin: 0 auto; }
+					a.link{ text-decoration:none; color:white; }
+
+				img.hex-img{ z-index: 20; }
+
+
+</style>
+</head>
+<body>
+
+
+<div id="wrapper">
+
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/2.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/3.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/4.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/5.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/6.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/7.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/8.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/9.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/10.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/11.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="hex-1">
+			<div class="hex-2">
+				<div class="hex-in">
+					<div class="stroke"></div>
+					<div class="mask"></div>
+					<a class="link" href="http://google.fr" target="_blank">
+						<h4>ABOUT US</h4>
+						<p>We Are The Experts</p>
+					</a>
+					<img class="hex-img" src="images/12.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+	
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:100,400' rel='stylesheet' type='text/css'>	
+	<link rel="stylesheet" href="http://www.audrey-leroy.fr/wp-content/themes/Audreyleroy/styles/normalize.css" />
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.thibaudb.com/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.css3finalize.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+
+	$('.hexagon:gt(4)').css({ 'top':'-40px' });
+	$('.hexagon:gt(8)').css({ 'top':'-80px' });
+	$('.hexagon:gt(12)').css({ 'top':'-120px' });
+
+	var easeIn = 'easeOutExpo',
+		easeOut = 'easeOutElastic',
+		speedIn = 800,
+		speedOut = 2000;
+
+
+	$('.mask1').mouseenter(function() {
+
+		$(this).find('.thumb')
+			.dequeue().stop()
+			.animate({ 'background-size':'108%' },speedIn, easeIn);
+		$(this).find('.shape')
+			.dequeue().stop()
+			.animate({ 'background-size':'60%','opacity':0 });
+	}).mouseleave(function() {
+		$(this).find('.thumb')
+			.show()
+			.dequeue().stop()
+			.animate({ 'background-size':'98%' }, speedIn, easeOut);
+		$(this).find('.shape')
+			.dequeue().stop()
+			.animate({ 'background-size':'84%','opacity':1 }, speedOut, easeOut);
+
+	});
+
+	$('.thumb').click(function() {
+		$(this).fadeOut(800, easeIn);
+	});
+
+
+
+});
+
+</script>
+<style type="text/css">
+
+#wrapper{
+	width:880px;
+	margin: auto;
+}
+
+.hexagon{
+	width: 160px;
+	height: 180px;
+	display: inline-block;
+	position:relative;
+}
+	.hexagon:nth-child(6),
+	.hexagon:nth-child(16){
+		margin-left: 80px;
+	}
+
+	.mask0{ 
+		width: 160px;
+		height: 180px;
+		overflow: hidden;
+		visibility: hidden;
+		cursor: pointer;
+		transform: rotate(120deg); 
+		transform-origin: center center;
+	}
+
+		.mask1 {
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			transform: rotate(-60deg); 
+		}
+
+			.thumb{
+				width: 100%;
+				height: 100%;
+				visibility: visible;
+				transform: rotate(-60deg);
+				background-size: 98%;
+				background-position: 50%!important;
+				background-repeat: no-repeat!important;
+				z-index: 3;
+				position: relative;
+			}
+			
+			.hexagon:nth-child(1) .thumb{ background: transparent url('images/001.png'); background-size: 98%; }
+			.hexagon:nth-child(2) .thumb{ background: transparent url('images/002.png'); background-size: 98%; }
+			.hexagon:nth-child(3) .thumb{ background: transparent url('images/003.png'); background-size: 98%; }
+			.hexagon:nth-child(4) .thumb{ background: transparent url('images/004.png'); background-size: 98%; }
+			.hexagon:nth-child(5) .thumb{ background: transparent url('images/005.png'); background-size: 98%; }
+			.hexagon:nth-child(6) .thumb{ background: transparent url('images/006.png'); background-size: 98%; }
+			.hexagon:nth-child(7) .thumb{ background: transparent url('images/007.png'); background-size: 98%; }
+			.hexagon:nth-child(8) .thumb{ background: transparent url('images/008.png'); background-size: 98%; }
+			.hexagon:nth-child(9) .thumb{ background: transparent url('images/009.png'); background-size: 98%; }
+			.hexagon:nth-child(10) .thumb{ background: transparent url('images/010.png'); background-size: 98%; }
+			.hexagon:nth-child(11) .thumb{ background: transparent url('images/011.png'); background-size: 98%; }
+			.hexagon:nth-child(12) .thumb{ background: transparent url('images/012.png'); background-size: 98%; }
+			.hexagon:nth-child(13) .thumb{ background: transparent url('images/013.png'); background-size: 98%; }
+
+
+			.mask0, .mask0:hover{
+				transition: all 200ms ease-in-out;
+			}
+
+			.desc{
+				transform: rotate(-60deg);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width:100%;
+				height:100%;
+				visibility: visible;
+				z-index: 2;
+				text-align: center;
+			}
+				.desc h4{ margin-top: 70px; }
+				.desc p{
+					font-size: 16px;
+					width: 80%;
+					margin: 0 auto;
+				}
+
+			.shape{ 
+				transform: rotate(-60deg);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width:100%;
+				height:100%;
+				visibility: visible;
+				background: url('images/roundhex.svg');
+				background-position: 50%;
+				background-repeat: no-repeat;
+				background-size: 60%;
+				z-index: 1;
+			}
+</style>
+</head>
+<body>
+<div id="wrapper">
+
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="mask0">
+			<div class="mask1">
+				<div class="thumb"></div>
+				<div class="desc">
+					<h4>ABOUT US</h4>
+					<p>We Are The Experts</p>
+				</div>
+				<div class="shape"></div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+	
+</body>
+</html>

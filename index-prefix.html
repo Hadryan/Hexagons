@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title>Prefix all browser</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/css3finalize/3.3/jquery.css3finalize.min.js"></script>
+</head>
+<style type="text/css">
+
+div#myDiv{
+    background:orange;
+    width:50px;
+    height:50px;
+    margin:50px;
+    border: 1px solid black;
+    transform: scale(1);
+    box-shadow: 2px 2px 6px grey;
+    border-radius: 5px;
+}
+div#myDiv:hover{
+	transform: scale(1.5);
+}
+div#myDiv,
+div#myDiv:hover{
+	transition: all 600ms ease-in-out;
+}
+
+</style>
+<script type="text/javascript">
+/*
+$(document).ready(function () {
+	var cssPrefixString = {};
+	var cssPrefix = function(propertie) {
+	    if (cssPrefixString[propertie] || cssPrefixString[propertie] === '') return cssPrefixString[propertie] + propertie;
+	    var e = document.createElement('div');
+	    var prefixes = ['', 'Moz', 'Webkit', 'O', 'ms', 'Khtml'];
+	    for (var i in prefixes) {
+	        if (typeof e.style[prefixes[i] + propertie] !== 'undefined') {
+	            cssPrefixString[propertie] = prefixes[i];
+	            return prefixes[i] + propertie;
+	        }
+	    }
+	    return false;
+	};
+	    
+
+	var cssTransform = cssPrefix('Transform'); // "MozTransform" or "WebkitTransform"
+	if (cssTransform) {
+	    var cssProp = {};
+	    cssProp['border'] = '1px solid rgba(0, 0, 0, .5)';
+	    cssProp[cssPrefix('Transform')] = 'scale(1.5)';
+	    cssProp[cssPrefix('borderRadius')] = '5px';
+	    cssProp[cssPrefix('boxShadow')] = '2px 2px 6px grey';
+	    //$('div#myDiv').css(cssProp);
+
+		$('div#myDiv').hover(function() {
+	    	$(this).css({
+	    		cssProp[cssPrefix('Transform')] = 'scale(1.5)'
+	    	});
+	    });
+
+	}
+	$('div#myDiv').hover(function() {
+    	//$(this).animate({'transform':'scale(1.5)'});
+    });
+*/
+});
+
+</script>
+<body>
+
+<div id="myDiv"></div>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:100,400' rel='stylesheet' type='text/css'>	
+	<link rel="stylesheet" href="css/styles-round.css" />
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.thibaudb.com/js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/jquery.transit.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+	$('.hexagon g path, .hexagon a path').css({ transformOrigin: 'center center' });
+	
+	$('.hexagon g path').css({ transform:'scale(.9)' });
+	$('.hexagon a path').css({ transform:'scale(.4)' });
+	$('.hexagon:gt(4)').css({ 'top':'-40px' });
+	$('.hexagon:gt(9)').css({ 'top':'-80px' });
+	$('.hexagon:gt(14)').css({ 'top':'-120px' });
+
+	$.cssEase['bounce'] = 'cubic-bezier(0,1,0.5,1.3)';
+
+	var i = 1;
+	$("svg").each( function() {
+	    $(this).find('clipPath').attr("id", "mask"+ i);
+	    $(this).find('image').attr('clip-path', 'url(#mask'+ i +')');
+	    i++;
+	});
+
+
+	var myTimeout;
+	$('.hexagon image').mouseenter(function() {
+		var t = $(this),
+			me = t.closest('.hexagon'),
+			mask = me.find('g path'),
+			shape = me.find('a path');
+
+		mask.stop(true,false).filter(':not(:animated)').transition({ scale:1 });
+		
+		myTimeout = setTimeout(function() {
+			shape.stop(true,false).filter(':not(:animated)').transition({ scale:0.4, opacity:0 });
+			
+		}, 500);
+	}).mouseleave(function() {
+		clearTimeout(myTimeout);
+		var t = $(this),
+			me = t.closest('.hexagon'),
+			mask = me.find('g path'),
+			shape = me.find('a path');
+
+		mask.stop(true,false).filter(':not(:animated)').transition({ scale:.9 }, 500, 'bounce');
+		shape.stop(true,false).filter(':not(:animated)').transition({ scale:.89, opacity:1 }, 500, 'bounce');
+	});
+
+});
+
+</script>
+<style type="text/css">
+
+body{ background:#3d434d; }
+#wrapper{ width:880px; margin: auto; }
+.empty{  width:0; height:0; }
+
+	.hexagon{
+		position:relative;
+		width:160px;
+		height: 180px;
+		display:inline-block; 
+		margin-right: -4px;
+		margin-bottom: -3px;
+	}
+	div.hexagon{
+		float:left;
+		background: no-repeat url(images/roundhex.svg);
+		background-size: 90%;
+		background-position: center center;
+		margin-right: 0px!important;
+		margin-bottom: 0px!important;
+	}
+
+		.hexagon:nth-child(6),
+		.hexagon:nth-child(16){ margin-left: 80px; }
+
+			div.hexagon .inner{
+				margin-top: 40px;
+				padding: 10px;
+				text-align: center;
+				color:white;
+			}
+				div.hexagon .inner h4{
+					margin: 0;
+				}
+				div.hexagon .inner hr{
+					border: 0;
+					border-top: 1px solid #EEE;
+					width: 60%;
+					margin: 15px auto;
+				}
+				div.hexagon .inner p{
+					font-size: 16px;
+					width: 80%;
+					margin: 0 auto;
+				}
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+
+	<div class="hexagon">
+		<div class="inner">
+			<h4>HOME</h4>
+			<hr />
+			<p>Home Sweet Home</p>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="inner">
+			<h4>ABOUT US</h4>
+			<hr />
+			<p>We Are The Experts</p>
+		</div>
+	</div>
+	<div class="hexagon">
+		<div class="inner">
+			<h4>CONTACT US</h4>
+			<hr />
+			<p>We Open Everyday</p>
+		</div>
+	</div>
+
+
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/3.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/4.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/5.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/6.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/7.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/8.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/9.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/10.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/11.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/12.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/13.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/14.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+	<svg version="1.1" class="hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 180" enable-background="new 0 0 160 180" xml:space="preserve">
+		<g>
+			<clipPath id="mask">
+				<path fill="#009540" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+				c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+				C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+				z">
+				</path>
+			</clipPath>
+		</g>
+		<a xlink:href="#">
+			<path fill="#ffffff" d="M80,180c-3.413,0-6.824-0.889-9.881-2.668L9.881,142.288C3.767,138.73,0,132.157,0,125.042V54.956
+			c0-7.114,3.767-13.688,9.881-17.245L70.119,2.668c6.114-3.558,13.648-3.557,19.762,0l60.238,35.043
+			C156.232,41.268,160,47.842,160,54.956v70.086c0,7.114-3.768,13.688-9.881,17.245l-60.238,35.044C86.824,179.109,83.411,180,80,180
+			z">
+			</path>
+			<image clip-path="url(#mask)" height="100%" width="100%" xlink:href="images/2.jpg" preserveAspectRatio="xMidYMin slice">
+			</image>
+		</a>
+	</svg>
+
+
+
+</div>
+	
+</body>
+</html>
